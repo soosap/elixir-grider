@@ -26,11 +26,21 @@ defmodule Cards do
 	end
 
 	def load(filename) do
-
 		case File.read(filename) do
 			{:ok, binary} -> :erlang.binary_to_term binary
 		  {:error, _reason} -> "That file does not exist!" 
 		end
+	end
 
+	def create_hand(hand_size) do
+		# deck = Cards.create_deck
+		# deck = Cards.shuffle(deck)
+		# hand = Cards.deal(deck, hand_size)
+
+		# Using elixir's pipe operator:
+		# Elixir will pass on the result of a particular command as the first argument to the next command.
+		Cards.create_deck
+		|> Cards.shuffle
+		|> Cards.deal(hand_size)
 	end
 end
